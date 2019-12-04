@@ -23,7 +23,7 @@
       flex-direction: column;
       justify-content: space-around;
     }
-    #temp, #hum {
+    #temp, #hum, #clock {
       display: flex;
       font-size: 15rem;
       font-family: monospace;
@@ -34,6 +34,9 @@
 
 <body>
   <div class="wrap">
+    <div id="clock">
+      LOADING
+    </div>
     <div id="temp">
       LOADING
     </div>
@@ -69,8 +72,16 @@
       xhr.send();
     }
 
+    function updateClock() {
+      var today = new Date();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      document.getElementById('clock').textContent = time;
+    }
+
     update();
+    updateClock();
     setInterval(update, 60000);
+    setInterval(updateClock, 100);
   </script>
 </body>
 
